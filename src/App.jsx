@@ -5,10 +5,14 @@ import ListaClientes from "./components/ListaClientes";
 
 function App() {
     return (
-        <div className="container">
+        <div className="container mx-auto mt-20">
             <Header/>
-            <Formulario />
-            <ListaClientes />
+            
+            <div className="mt-12">
+                <Formulario />
+                <ListaClientes />
+            </div>
+            
         </div>
     )
 }
