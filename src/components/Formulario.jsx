@@ -1,5 +1,30 @@
+import { useState } from "react"
 
 function Formulario() {
+
+    const [nombre, setNombre] = useState('');
+    const [correo, setCorreo] = useState('');
+    const [celular, setCelular] = useState(0);
+    const [genero, setGenero] = useState('');
+    const [plan, setPlan] = useState('');
+    const [fecha, setFecha] = useState('');
+
+    console.log({
+        nombre, correo, celular, genero, plan, fecha
+    });
+
+    const handleOptionChange = (event) => {
+        setGenero(event.target.value);
+    };
+
+    const handleSelectChange = (event) => {
+        setPlan(event.target.value);
+    };
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+    }
+
     return (
         <div className="md:w-1/2 lg:w-2/5">
             <h2 className="font-black text-2xl text-center">Agendamiento de Citas</h2>
@@ -8,7 +33,9 @@ function Formulario() {
                 <span className="text-fuchsia-600 font-bold">Administralas</span>
             </p>
 
-            <form className="bg-white shadow-md rounded-lg py-10 px-5 m-3">
+            <form
+                onSubmit={handleSubmit}
+                className="bg-white shadow-md rounded-lg py-10 px-5 m-3">
                 <div className="mb-5">
                     <label className="block text-gray-700 uppercase font-bold" htmlFor="nombre">
                         Nombre y Apellido
@@ -18,6 +45,7 @@ function Formulario() {
                         placeholder="Nombre del cliente"
                         className="border-2 w-full p-2 mt-2 placeholder-gray-400 rounded-md focus:outline-fuchsia-500"
                         id="nombre"
+                        onChange={e => setNombre(e.target.value)}
                     />
                 </div>
                 <div className="mb-5">
@@ -29,6 +57,7 @@ function Formulario() {
                         placeholder="Correo de contacto"
                         className="border-2 w-full p-2 mt-2 placeholder-gray-400 rounded-md focus:outline-fuchsia-500"
                         id="email"
+                        onChange={e => setCorreo(e.target.value)}
                     />
                 </div>
                 <div className="mb-5">
@@ -40,6 +69,7 @@ function Formulario() {
                         placeholder="Numero de contacto"
                         className="border-2 w-full p-2 mt-2 placeholder-gray-400 rounded-md focus:outline-fuchsia-500"
                         id="celular"
+                        onChange={e => setCelular(e.target.value)}
                         min={0}
                     />
                 </div>
@@ -47,15 +77,15 @@ function Formulario() {
                     <p className="block text-gray-700 uppercase font-bold mb-2">Genero</p>
                     <div className="mb-5 flex flex-wrap justify-between md:justify-around">
                         <div className="flex items-center mb-2">
-                            <input id="hombre" type="radio" name="genero" value="Hombre" className="w-5 h-5"  />
+                            <input id="hombre" type="radio" name="genero" value="Hombre" className="w-5 h-5" onChange={handleOptionChange} />
                             <label htmlFor="hombre" className="px-2 text-gray-700 uppercase font-bold">Hombre</label>
                         </div>
                         <div className="flex items-center mb-2">
-                            <input id="mujer" type="radio" name="genero" value="Mujer" className="w-5 h-5" />
+                            <input id="mujer" type="radio" name="genero" value="Mujer" className="w-5 h-5" onChange={handleOptionChange} />
                             <label htmlFor="mujer" className="px-2 text-gray-700 uppercase font-bold">Mujer</label>
                         </div>
                         <div className="flex items-center mb-2">
-                            <input id="otro" type="radio" name="genero" value="No Aplica" className="w-5 h-5 " />
+                            <input id="otro" type="radio" name="genero" value="No Aplica" className="w-5 h-5 " onChange={handleOptionChange} />
                             <label htmlFor="otro" className="px-2 text-gray-700 uppercase font-bold">No Aplica</label>
                         </div>
                     </div>
@@ -68,6 +98,7 @@ function Formulario() {
                         name="plan-spa" 
                         id="" 
                         className="border-2 w-full p-2 mt-2 text-gray-700 border-gray-200 rounded-md focus:outline-fuchsia-500"
+                        onChange={handleSelectChange}
                     >
                         <option value="" disabled>Seleccione un plan</option>
                         <option value="Plan Celebración">Plan Celebración</option>
@@ -86,6 +117,7 @@ function Formulario() {
                         placeholder="Nombre del cliente"
                         className="border-2 w-full p-2 mt-2 placeholder-gray-400 rounded-md focus:outline-fuchsia-500"
                         id="nombre"
+                        onChange={e => setFecha(e.target.value)}
                     />
                 </div>
                 <input 
