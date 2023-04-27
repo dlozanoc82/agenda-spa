@@ -1,8 +1,8 @@
 
-const Alerta = () => {
+const Alerta = ({alerta}) => {
     return (
-        <div className="bg-red-400 text-white text-center uppercase p-3 font-bold mb-3 rounded-md">
-            <p>LLena todos los campos</p>
+        <div className={`${alerta.error ? 'from-red-400 to-red-500' : 'from-teal-400 to-teal-600'} bg-gradient-to-b text-center p-3 rounded-xl uppercase text-white font-bold text-sm mb-10`}>
+            <p>{alerta.msg}</p>
         </div>
     )
 }

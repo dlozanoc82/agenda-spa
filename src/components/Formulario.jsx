@@ -10,7 +10,7 @@ function Formulario({cliente, setCliente}) {
     const [plan, setPlan] = useState('');
     const [fecha, setFecha] = useState('');
     const [error, setError] = useState(false);
-    //const [alerta, setAlerta] = useState({});
+    const [alerta, setAlerta] = useState({});
 
     console.log({
         nombre, correo, celular, genero, plan, fecha
@@ -29,11 +29,18 @@ function Formulario({cliente, setCliente}) {
 
         //Validacion form
         if ([nombre, correo, celular, genero, plan, fecha ].includes('')) {
-            console.log('Almenos un campo vacio');
+            setAlerta({
+                msg: 'Todos los campos son obligatorios',
+                error: true
+            })
             setError(true);
             return;
         }
 
+        setAlerta({
+            msg: 'Cita agendada correctamente',
+            error: false
+        })
         setError(false);
 
         //Objeto Cliente
@@ -55,8 +62,9 @@ function Formulario({cliente, setCliente}) {
         setGenero('');
         setPlan('');
         setFecha('');
+        setAlerta({});
         setError(false);
-        
+
     }
 
     return (
@@ -71,7 +79,7 @@ function Formulario({cliente, setCliente}) {
                 onSubmit={handleSubmit}
                 className="bg-white shadow-md rounded-lg py-10 px-5 m-3">
 
-                {error && <Alerta/>}
+                {error && <Alerta alerta={alerta} />}
 
                 <div className="mb-5">
                     <label className="block text-gray-700 uppercase font-bold" htmlFor="nombre">
