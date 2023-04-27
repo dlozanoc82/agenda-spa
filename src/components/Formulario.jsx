@@ -1,13 +1,16 @@
 import { useState } from "react"
+import Alerta from "./Alerta";
 
-function Formulario() {
+function Formulario({cliente, setCliente}) {
 
     const [nombre, setNombre] = useState('');
     const [correo, setCorreo] = useState('');
-    const [celular, setCelular] = useState(0);
+    const [celular, setCelular] = useState('');
     const [genero, setGenero] = useState('');
     const [plan, setPlan] = useState('');
     const [fecha, setFecha] = useState('');
+    const [error, setError] = useState(false);
+    //const [alerta, setAlerta] = useState({});
 
     console.log({
         nombre, correo, celular, genero, plan, fecha
@@ -23,6 +26,37 @@ function Formulario() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+
+        //Validacion form
+        if ([nombre, correo, celular, genero, plan, fecha ].includes('')) {
+            console.log('Almenos un campo vacio');
+            setError(true);
+            return;
+        }
+
+        setError(false);
+
+        //Objeto Cliente
+        const objCliente = {
+            nombre, 
+            correo, 
+            celular, 
+            genero, 
+            plan, 
+            fecha
+        }
+
+        setCliente([...cliente, objCliente]);
+
+        //Reiniciar Form 
+        setNombre('');
+        setCorreo('');
+        setCelular('');
+        setGenero('');
+        setPlan('');
+        setFecha('');
+        setError(false);
+        
     }
 
     return (
@@ -36,6 +70,9 @@ function Formulario() {
             <form
                 onSubmit={handleSubmit}
                 className="bg-white shadow-md rounded-lg py-10 px-5 m-3">
+
+                {error && <Alerta/>}
+
                 <div className="mb-5">
                     <label className="block text-gray-700 uppercase font-bold" htmlFor="nombre">
                         Nombre y Apellido
@@ -45,6 +82,7 @@ function Formulario() {
                         placeholder="Nombre del cliente"
                         className="border-2 w-full p-2 mt-2 placeholder-gray-400 rounded-md focus:outline-fuchsia-500"
                         id="nombre"
+                        value={nombre}
                         onChange={e => setNombre(e.target.value)}
                     />
                 </div>
@@ -57,6 +95,7 @@ function Formulario() {
                         placeholder="Correo de contacto"
                         className="border-2 w-full p-2 mt-2 placeholder-gray-400 rounded-md focus:outline-fuchsia-500"
                         id="email"
+                        value={correo}
                         onChange={e => setCorreo(e.target.value)}
                     />
                 </div>
@@ -69,6 +108,7 @@ function Formulario() {
                         placeholder="Numero de contacto"
                         className="border-2 w-full p-2 mt-2 placeholder-gray-400 rounded-md focus:outline-fuchsia-500"
                         id="celular"
+                        value={celular}
                         onChange={e => setCelular(e.target.value)}
                         min={0}
                     />
@@ -117,6 +157,7 @@ function Formulario() {
                         placeholder="Nombre del cliente"
                         className="border-2 w-full p-2 mt-2 placeholder-gray-400 rounded-md focus:outline-fuchsia-500"
                         id="nombre"
+                        value={fecha}
                         onChange={e => setFecha(e.target.value)}
                     />
                 </div>
