@@ -8,7 +8,7 @@ function Formulario() {
                 <span className="text-fuchsia-600 font-bold">Administralas</span>
             </p>
 
-            <form className="bg-white shadow-md rounded-lg py-10 px-5 mt-10 mb-5">
+            <form className="bg-white shadow-md rounded-lg py-10 px-5 m-3">
                 <div className="mb-5">
                     <label className="block text-gray-700 uppercase font-bold" htmlFor="nombre">
                         Nombre y Apellido
