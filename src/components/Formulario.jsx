@@ -1,7 +1,7 @@
 import { useState } from "react"
 import Alerta from "./Alerta";
 
-function Formulario({cliente, setCliente}) {
+function Formulario({clientes, setClientes}) {
 
     const [nombre, setNombre] = useState('');
     const [correo, setCorreo] = useState('');
@@ -56,7 +56,7 @@ function Formulario({cliente, setCliente}) {
         }
 
         //Guardar Cliente en Array
-        setCliente([...cliente, objCliente]);
+        setClientes([...clientes, objCliente]);
 
         //Reiniciar Form 
         setNombre('');
@@ -75,7 +75,7 @@ function Formulario({cliente, setCliente}) {
             <h2 className="font-black text-2xl text-center">Agendamiento de Citas</h2>
             <p className="text-lg mt-5 text-center">
                 Agenda citas y {''}
-                <span className="text-fuchsia-600 font-bold">Administralas</span>
+                <span className="text-cyan-600 font-bold">Administralas</span>
             </p>
 
             <form
@@ -196,7 +196,7 @@ function Formulario({cliente, setCliente}) {
                 </div>
                 <input 
                     type="submit" 
-                    className="bg-fuchsia-600 w-full p-3 text-white uppercase font-bold rounded-md hover:bg-fuchsia-700 hover:cursor-pointer transition-all mt-2"
+                    className="bg-cyan-600 w-full p-3 text-white uppercase font-bold rounded-md hover:bg-cyan-700 hover:cursor-pointer transition-all mt-2"
                     value="Agendar Cita"
                 />
             </form>

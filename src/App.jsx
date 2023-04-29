@@ -5,15 +5,16 @@ import ListaClientes from "./components/ListaClientes";
 
 function App() {
 
-    const [cliente, setCliente] = useState([]);
+    const [clientes, setClientes] = useState([]);
+    const [cliente, setCliente] = useState({});
 
     return (
         <div className="container mx-auto mt-20">
             <Header/>
             
             <div className="mt-12 md:flex">
-                <Formulario cliente={cliente} setCliente={setCliente} />
-                <ListaClientes cliente={cliente} />
+                <Formulario clientes={clientes} setClientes={setClientes} />
+                <ListaClientes clientes={clientes} setCliente={setCliente} />
             </div>
             
         </div>
