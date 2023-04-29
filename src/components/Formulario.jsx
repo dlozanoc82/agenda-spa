@@ -1,7 +1,7 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import Alerta from "./Alerta";
 
-function Formulario({clientes, setClientes}) {
+function Formulario({clientes, setClientes, cliente}) {
 
     const [nombre, setNombre] = useState('');
     const [correo, setCorreo] = useState('');
@@ -11,6 +11,20 @@ function Formulario({clientes, setClientes}) {
     const [fecha, setFecha] = useState('');
     const [error, setError] = useState(false);
     const [alerta, setAlerta] = useState({});
+    
+
+    useEffect(() => {
+        //Comprobar arreglo vacio
+        if(Object.keys(cliente).length > 0){
+            setNombre(cliente.nombre);
+            setCorreo(cliente.correo);
+            setCelular(cliente.celular);
+            setGenero(cliente.genero);
+            setPlan(cliente.plan);
+            setFecha(cliente.fecha);
+        }
+    }, [cliente])
+    
 
     const generarId = () => {
         const random = Math.random().toString(36).substr(2);
@@ -67,7 +81,6 @@ function Formulario({clientes, setClientes}) {
         setFecha('');
         setAlerta({});
         setError(false);
-
     }
 
     return (

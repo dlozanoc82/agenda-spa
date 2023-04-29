@@ -1,7 +1,7 @@
 import Cliente from "./Cliente"
 
 const ListaClientes = ({clientes, setCliente}) => {
-
+    
     return (
         <div className="md:w-1/2 lg:w-3/5 md:h-screen md:overflow-y-scroll">
 
