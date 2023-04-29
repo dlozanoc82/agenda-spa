@@ -12,9 +12,11 @@ function Formulario({cliente, setCliente}) {
     const [error, setError] = useState(false);
     const [alerta, setAlerta] = useState({});
 
-    console.log({
-        nombre, correo, celular, genero, plan, fecha
-    });
+    const generarId = () => {
+        const random = Math.random().toString(36).substr(2);
+        const fecha = Date.now().toString(36);
+        return random + fecha;
+    }
 
     const handleOptionChange = (event) => {
         setGenero(event.target.value);
@@ -41,7 +43,6 @@ function Formulario({cliente, setCliente}) {
             msg: 'Cita agendada correctamente',
             error: false
         })
-        setError(false);
 
         //Objeto Cliente
         const objCliente = {
@@ -50,9 +51,11 @@ function Formulario({cliente, setCliente}) {
             celular, 
             genero, 
             plan, 
-            fecha
+            fecha,
+            id: generarId()
         }
 
+        //Guardar Cliente en Array
         setCliente([...cliente, objCliente]);
 
         //Reiniciar Form 
@@ -125,15 +128,36 @@ function Formulario({cliente, setCliente}) {
                     <p className="block text-gray-700 uppercase font-bold mb-2">Genero</p>
                     <div className="mb-5 flex flex-wrap justify-between md:justify-around">
                         <div className="flex items-center mb-2">
-                            <input id="hombre" type="radio" name="genero" value="Hombre" className="w-5 h-5" onChange={handleOptionChange} />
+                            <input 
+                                id="hombre" 
+                                type="radio" 
+                                name="genero" 
+                                value="Hombre" 
+                                className="w-5 h-5" 
+                                checked={genero === 'Hombre'} 
+                                onChange={handleOptionChange} />
                             <label htmlFor="hombre" className="px-2 text-gray-700 uppercase font-bold">Hombre</label>
                         </div>
                         <div className="flex items-center mb-2">
-                            <input id="mujer" type="radio" name="genero" value="Mujer" className="w-5 h-5" onChange={handleOptionChange} />
+                            <input 
+                                id="mujer" 
+                                type="radio" 
+                                name="genero" 
+                                className="w-5 h-5" 
+                                value="Mujer" 
+                                checked={genero === 'Mujer'} 
+                                onChange={handleOptionChange} />
                             <label htmlFor="mujer" className="px-2 text-gray-700 uppercase font-bold">Mujer</label>
                         </div>
                         <div className="flex items-center mb-2">
-                            <input id="otro" type="radio" name="genero" value="No Aplica" className="w-5 h-5 " onChange={handleOptionChange} />
+                            <input
+                                id="otro" 
+                                type="radio" 
+                                name="genero" 
+                                className="w-5 h-5 "
+                                value="No Aplica" 
+                                checked={genero === 'No Aplica'} 
+                                onChange={handleOptionChange} />
                             <label htmlFor="otro" className="px-2 text-gray-700 uppercase font-bold">No Aplica</label>
                         </div>
                     </div>
@@ -146,6 +170,7 @@ function Formulario({cliente, setCliente}) {
                         name="plan-spa" 
                         id="" 
                         className="border-2 w-full p-2 mt-2 text-gray-700 border-gray-200 rounded-md focus:outline-fuchsia-500"
+                        value={plan}
                         onChange={handleSelectChange}
                     >
                         <option value="" disabled>Seleccione un plan</option>
