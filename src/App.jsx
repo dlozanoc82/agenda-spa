@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Formulario from "./components/Formulario";
 import Header from "./components/Header";
 import ListaClientes from "./components/ListaClientes";
@@ -8,10 +8,14 @@ function App() {
     const [clientes, setClientes] = useState([]);
     const [cliente, setCliente] = useState({});
 
+    useEffect(() => {
+        localStorage.setItem('clientes', JSON.stringify(clientes));
+    }, [clientes])
+
     const eliminarCliente = (id) => {
         const clientesActualizados = clientes.filter(cliente => cliente.id !== id);
         setClientes(clientesActualizados);
-    }
+    }    
 
     return (
         <div className="container mx-auto mt-20">
