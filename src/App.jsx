@@ -9,8 +9,16 @@ function App() {
     const [cliente, setCliente] = useState({});
 
     useEffect(() => {
+        const obtenerLS = () =>{
+            const clientesLS = JSON.parse(localStorage.getItem('clientes')) ?? [];
+            setClientes(clientesLS);
+        }
+        obtenerLS();
+    }, []);
+
+    useEffect(() => {
         localStorage.setItem('clientes', JSON.stringify(clientes));
-    }, [clientes])
+    }, [clientes]);
 
     const eliminarCliente = (id) => {
         const clientesActualizados = clientes.filter(cliente => cliente.id !== id);
