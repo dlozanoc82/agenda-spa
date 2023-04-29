@@ -1,7 +1,14 @@
 
-const Cliente = ({persona, setCliente}) => {
+const Cliente = ({persona, setCliente, eliminarCliente}) => {
 
-    const {nombre, correo, celular, genero, plan, fecha } = persona;
+    const {nombre, correo, celular, genero, plan, fecha, id } = persona;
+
+    const handleEliminar = () => {
+        const respuesta = confirm('Deseas eliminar esta cita');
+        if (respuesta) {
+            eliminarCliente(id);
+        }
+    }
 
     return (
             <div className="bg-white m-3 shadow rounded-xl px-5 py-10">
@@ -38,6 +45,7 @@ const Cliente = ({persona, setCliente}) => {
                     <button
                         type="button"
                         className="py-2 px-10 bg-red-600 hover:bg-red-700 text-white font-bold uppercase rounded-lg "
+                        onClick={handleEliminar}
                     >Eliminar</button>
                 </div>
             </div>
