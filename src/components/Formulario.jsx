@@ -72,8 +72,8 @@ function Formulario({clientes, setClientes}) {
 
     return (
         <div className="md:w-1/2 lg:w-2/5">
-            <h2 className="font-black text-2xl text-center">Agendamiento de Citas</h2>
-            <p className="text-lg mt-5 text-center">
+            <h2 className="font-black text-3xl text-center">Agendamiento de Citas</h2>
+            <p className="text-xl mt-5 text-center">
                 Agenda citas y {''}
                 <span className="text-cyan-600 font-bold">Administralas</span>
             </p>

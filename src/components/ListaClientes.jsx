@@ -7,8 +7,8 @@ const ListaClientes = ({clientes, setCliente}) => {
 
         {clientes && clientes.length ? (
             <>
-                <h2 className="font-black text-2xl text-center">Listado de Citas</h2>
-                <p className="text-lg mt-5 text-center">
+                <h2 className="font-black text-3xl text-center">Listado de Citas</h2>
+                <p className="text-xl mt-5 text-center">
                     Administra las {''}
                     <span className="text-cyan-600 font-bold">Citas del SPA</span>
                 </p>
@@ -23,8 +23,8 @@ const ListaClientes = ({clientes, setCliente}) => {
             </>
         ): (
             <>
-                <h2 className="font-black text-2xl text-center">No hay citas</h2>
-                <p className="text-lg mt-5 text-center">
+                <h2 className="font-black text-3xl text-center">No hay citas</h2>
+                <p className="text-xl mt-5 text-center">
                     Comienza a agendar {''}
                     <span className="text-cyan-600 font-bold">citas</span>
                 </p>
