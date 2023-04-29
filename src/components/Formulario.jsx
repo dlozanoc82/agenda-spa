@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react"
 import Alerta from "./Alerta";
 
-function Formulario({clientes, setClientes, cliente}) {
+function Formulario({clientes, setClientes, cliente, setCliente}) {
 
     const [nombre, setNombre] = useState('');
     const [correo, setCorreo] = useState('');
@@ -53,11 +53,6 @@ function Formulario({clientes, setClientes, cliente}) {
             return;
         }
 
-        setAlerta({
-            msg: 'Cita agendada correctamente',
-            error: false
-        })
-
         //Objeto Cliente
         const objCliente = {
             nombre, 
@@ -66,11 +61,21 @@ function Formulario({clientes, setClientes, cliente}) {
             genero, 
             plan, 
             fecha,
-            id: generarId()
         }
 
-        //Guardar Cliente en Array
-        setClientes([...clientes, objCliente]);
+
+        //Actualizar o Agendar Cita
+        if (cliente.id) {
+            objCliente.id = cliente.id;
+            
+            const clientesActualizados = clientes.map(clienteState => clienteState.id === cliente.id ? objCliente : clienteState );
+
+            setClientes(clientesActualizados);
+            setCliente({});
+        }else{
+            objCliente.id = generarId();
+            setClientes([...clientes, objCliente]);
+        }
 
         //Reiniciar Form 
         setNombre('');
@@ -210,7 +215,7 @@ function Formulario({clientes, setClientes, cliente}) {
                 <input 
                     type="submit" 
                     className="bg-cyan-600 w-full p-3 text-white uppercase font-bold rounded-md hover:bg-cyan-700 hover:cursor-pointer transition-all mt-2"
-                    value="Agendar Cita"
+                    value={cliente.id ? 'Editar Cita' : 'Agendar Cita'}
                 />
             </form>
 
